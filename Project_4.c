@@ -8,9 +8,12 @@ char *printPrefix(int crn);  // prints the prefix of crn
 
 int checkCrn(int crn)
 {
-    if (crn != 9696 && crn != 4587 && crn != 4599 && crn != 4581 && crn != 8997 && crn != 4580 && crn != 4582 && crn != 4583 && crn != 3587 && crn != 4519 && crn != 6997 && crn != 9494)
-        return 0;
-    return 1;
+    int i = 0;
+    int CRN[] = {4587, 4599, 8997, 9696, 4580, 4581, 4582, 4583, 3587, 4519, 6997, 9494};
+    for (i = 0; i < 12; i++)
+        if (CRN[i] == crn)
+            return 1;
+    return 0;
 }
 //---------------------------
 int getCreditHours(int crn)
@@ -81,16 +84,80 @@ char *printPrefix(int crn)
 //------------------------------
 void main()
 {
-    int crn1, crn2, crn3;
-    printf("Enter your course numbers :");
-    scanf("%d%d%d%d", &crn1, &crn2, &crn3);
-    if (checkCrn(crn1) * checkCrn(crn2) * checkCrn(crn3) == 0)
-        printf("Invalid crn!\n");
-    else
+   double ch = 120.25, fee = 35;
+    int crn[3], hours[3];
+    while (1)
     {
-        printf("%d\t%s\t%d\n", crn1, printPrefix(crn1), getCreditHours(crn1));
-        printf("%d\t%s\t%d\n", crn2, printPrefix(crn2), getCreditHours(crn2));
-        printf("%d\t%s\t%d\n", crn3, printPrefix(crn3), getCreditHours(crn3));
+        double total = 0;
+        int i = 0, sid, n, credsum = 0, flag;
+        char c;
+        printf("Enter the student id: \n");
+        scanf("%d", &sid);
+        printf("Enter how many courses up to 3:  \n");
+        scanf("%d", &n);
+        if (n > 3 || n < 1)
+        {
+            printf("Invalid number of courses\n");
+            n = 0;
+            scanf("%d", &flag);
+        }
+        else
+        {
+            printf("Enter the %d course number(s)\n", n);
+            for (i = 0; i < n; i++)
+                scanf("%d", &crn[i]);
+            for (i = 0; i < n; i++)
+            {
+                if (checkCrn(crn[i]) == 0)
+                {
+                    printf("Sorry Invalid CRN(s)\n\n");
+                    flag = -1;
+                    break;
+                }
+                hours[i] = getCreditHours(crn[i]);
+                credsum = credsum + hours[i];
+            }
+        }
+        //No more than 7 credit hours validation
+        if (flag != -1)
+            if (credsum > 7)
+                printf("Sorry we can't process more than 7 credit hours\n");
+            else
+            {
+                printf("VALENCE COMMUNITY COLLEGE\n ORLANDO FL 10101\n");
+                printf("---------------------\n\n");
+                printf("Fee invoice prepared for Student V%d \n\n ", sid);
+                printf("1 Credit hour = %.2f \n\n", ch);
+                printf("CRN\tCR_PREFIX\tCR_HOURS\n");
+                for (i = 0; i < n; i++)
+                {
+                    double d = hours[i] * ch;
+                    printf("%d\t%s\t%d\t$ %.2f\n", crn[i], printPrefix(crn[i]), hours[i], d);
+                    total = total + d;
+                }
+                total = total + fee;
+                printf("\n\tHealth & id fees $ %.2f\n", fee);
+                printf("--------------------------------------\n");
+                printf("\t Total Payments $ %.2f\n", total);
+            }
+            //Valid or invalid entry to continue
+        printf("Would you like to continue Y=yes N=no\n");
+        scanf("%c");
+        scanf("%c", &c);
+        do
+        {
+            if (c == 'N' || c == 'n')
+            {
+                printf("Thank you for using the program, Goodbye!\n");
+                exit(0);
+            }
+            if (c != 'Y' && c != 'y')
+            {
+                printf("INVALID ENTRY It has to y or n\n");
+                scanf("%c");
+                scanf("%c", &c);
+            }
+        } while (c != 'Y' && c != 'y');
     }
 }
 
