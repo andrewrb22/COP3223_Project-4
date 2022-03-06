@@ -20,9 +20,9 @@ int getCreditHours(int crn)
     case 9696:
         return 5;
     case 4587:
-        return 3;
+        return 4;
     case 4599:
-        return 1;
+        return 3;
     case 8997:
         return 1;
     case 4580:
@@ -30,7 +30,19 @@ int getCreditHours(int crn)
     case 4581:
         return 4;
     case 4582:
-        return 2;                
+        return 2;
+    case 4583:
+        return 2;
+    case 3587:
+        return 4;
+    case 4519:
+        return 3;
+    case 6997:
+        return 1;
+    case 9494:
+        return 3;
+    default:
+        return 0;                                    
     }
 }
 //---------------------------
