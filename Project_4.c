@@ -75,7 +75,7 @@ char *printPrefix(int crn)
   case 9494:
     return "COP 101";
   default:
-    return "\t"                   
+    return "\t";                   
     }
 }
 //------------------------------
