@@ -50,12 +50,32 @@ char *printPrefix(int crn)
 {
     switch (crn)
     {
-    case 9696:
-        return "MAT 111";
-    case 4587:
-        return "COP 222";
-    case 4599:
-        return "STA 200";
+  case 4587:
+    return "MAT 236";
+  case 4589:
+    return "COP 220";
+  case 8997:
+    return "GOL 124";
+  case 9696:
+    return "COP 100";
+  case 4580:
+    return "MAT 230";
+  case 4581:
+    return "MAT 231";
+  case 4582:
+   return "MAT 232";
+  case 4583:
+    return "MAT 233";
+  case 3587:
+    return "MAT 256";
+  case 4519:
+    return "COP 420";
+  case 6997:
+    return"GOL 127";
+  case 9494:
+    return "COP 101";
+  default:
+    return "\t"                   
     }
 }
 //------------------------------
