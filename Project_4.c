@@ -93,36 +93,4 @@ void main()
         printf("%d\t%s\t%d\n", crn3, printPrefix(crn3), getCreditHours(crn3));
     }
 }
-//---------------------------
-int checkCrn(int crn)
-{
-    if (crn != 9696 && crn != 4587 && crn != 4599)
-        return 0;
-    return 1;
-}
-//---------------------------
-int getCreditHours(int crn)
-{
-    switch (crn)
-    {
-    case 9696:
-        return 5;
-    case 4587:
-        return 3;
-    case 4599:
-        return 1;
-    }
-}
-//---------------------------
-char *printPrefix(int crn)
-{
-    switch (crn)
-    {
-    case 9696:
-        return "MAT 111";
-    case 4587:
-        return "COP 222";
-    case 4599:
-        return "STA 200";
-    }
-}
+
